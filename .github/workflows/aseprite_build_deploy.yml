@@ -1,11 +1,13 @@
 name: Build and deploy Aseprite
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
   push:
     branches:
-      - master
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
 
 env:
   BUILD_TYPE: Release
@@ -63,7 +65,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
        matrix:
-         os: [windows-latest, ubuntu-latest, macOS-latest]
+         os: [windows-latest]
        fail-fast: false    
     steps:
       - name: (Windows) Install dependencies
